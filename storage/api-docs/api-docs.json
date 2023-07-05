@@ -1,0 +1,83 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Email Sender Application",
+        "description": "This is an API that sends email to users. The email contains users with their respective post titles",
+        "termsOfService": "http://api_url/terms/",
+        "contact": {
+            "name": "Support Team",
+            "email": "support@your-api.com"
+        },
+        "license": {
+            "name": "API License",
+            "url": "http://api_url/license"
+        },
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/mail/send/user-posts": {
+            "post": {
+                "tags": [
+                    "Mails"
+                ],
+                "summary": "Send user posts mail",
+                "operationId": "c58f2c44617bd76f2ee210171a6cfaa1",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "emails"
+                                ],
+                                "properties": {
+                                    "emails": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Your email is being processed",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Your email is being processed"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Email could not be sent",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Email could not be sent"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
