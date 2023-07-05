@@ -44,10 +44,6 @@ class MailController extends Controller
      *          )
      *     )
      * )
-     */
-
-    /**
-     * Sends an email containing user posts to the specified email addresses.
      * @param SendUserPostsMailRequest $request
      * @return JsonResponse
      */
