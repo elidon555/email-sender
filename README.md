@@ -25,40 +25,53 @@ You will need the following to run this application:
 
 1. Clone this repository: 
 ```bash
-git clone https://github.com/elidon555/user-posts-email-sender.git
+git clone https://github.com/elidon555/email-sender.git
 ```
-2. Install the dependencies:
+2. Build docker container
+```bash
+docker-compose up -d 
+```
+3. Enter in the laravel app container terminal
+```bash
+docker ps
+
+#    It will return something like this: 
+#    
+#    281b04bb0d88   mysql:8.0.33          "docker-entrypoint.s…"   14 hours ago   Up 7 seconds   33060/tcp, 0.0.0.0:4306->3306/tcp   db
+#    c2d471f3ac65   nginx:stable-alpine   "/docker-entrypoint.…"   14 hours ago   Up 8 seconds   0.0.0.0:8080->80/tcp                nginx
+#    defe534c3de9   laravelapp            "docker-php-entrypoi…"   14 hours ago   Up 8 seconds   9000/tcp                            laravelapp
+
+docker exec -it <container_id_or_name> /bin/bash
+
+# Replace <container_id_or_name> with laravelapp ID which is defe534c3de9
+
+```
+
+4. Install the dependencies:
 ```bash
 composer install
 ```
-3. Copy the .env.example file to create your own environment file:
+5. Copy the .env.example file to create your own environment file:
 ```bash
 cp .env.example .env
 ```
-4. Edit the .env file with your database and Mailtrap configurations.
+6. Edit the .env file with your database and Mailtrap/Gmail configurations.
 
-5. Generate an application key:
+7. Generate an application key:
 
 ```bash
 php artisan key:generate
 ```
-
-6. Generate swagger documentation
+8. Generate swagger documentation
 
 ```bash
 php artisan l5-swagger:generate
 php artisan optimize
 ```
-
-7. Run migrations and db seed
+8. Run migrations and db seed
 
 ```bash
 php artisan migrate:refresh --seed
-```
-
-Run the application:
-```bash
-php artisan serve
 ```
 
 ### Usage
