@@ -1,0 +1,25 @@
+name: Laravel CI
+
+on:
+  push:
+    branches:
+      - main  # Set a branch name to trigger the workflow
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'  # adjust as per your PHP version
+
+      - name: Install Dependencies
+        run: composer install
+
+      - name: Run Tests
+        run: ./vendor/bin/phpunit
