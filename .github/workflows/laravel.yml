@@ -40,7 +40,7 @@ jobs:
         run: composer install
 
       - name: Run PHP_CodeSniffer
-        run: ./vendor/bin/phpcs --report=checkstyle | cs2pr
+        run: ./vendor/bin/phpcs --report=checkstyle ./src/ | cs2pr
 
       - name: Run Tests
         run: ./vendor/bin/phpunit
